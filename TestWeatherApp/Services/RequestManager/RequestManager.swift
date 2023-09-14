@@ -9,7 +9,7 @@ protocol RequestManager: AnyObject {
     func perform<T: Decodable>(request: Request<T>, completion: @escaping (Result<T, Error>) -> Void)
 }
 
-final class RequestManagerImpl {
+final class RequestManagerImpl: RequestManager {
     
     // MARK: - Singleton
     
@@ -18,11 +18,9 @@ final class RequestManagerImpl {
     // MARK: - Init
     
     private init() { }
-}
+    
+    // MARK: - RequestManager
 
-// MARK: - RequestManager
-
-extension RequestManagerImpl: RequestManager {
     func perform<T>(request: Request<T>, completion: @escaping (Result<T, Error>) -> Void) {
         
     }

@@ -18,6 +18,10 @@
 		C49257F42AB34EC700DFF858 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257F32AB34EC700DFF858 /* RequestManager.swift */; };
 		C49257F72AB34F3D00DFF858 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257F62AB34F3D00DFF858 /* Request.swift */; };
 		C49257F92AB34F5700DFF858 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257F82AB34F5700DFF858 /* LocalStorage.swift */; };
+		C49257FE2AB3545500DFF858 /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257FD2AB3545500DFF858 /* AppConfigurator.swift */; };
+		C49258022AB3555000DFF858 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258012AB3555000DFF858 /* RootCoordinator.swift */; };
+		C49258062AB3562900DFF858 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258052AB3562900DFF858 /* RootRouter.swift */; };
+		C492580A2AB35D1800DFF858 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258092AB35D1800DFF858 /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		C49257F32AB34EC700DFF858 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		C49257F62AB34F3D00DFF858 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		C49257F82AB34F5700DFF858 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		C49257FD2AB3545500DFF858 /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
+		C49258012AB3555000DFF858 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		C49258052AB3562900DFF858 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
+		C49258092AB35D1800DFF858 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				C47FB1412AB34AB700D426A8 /* App */,
+				C49257FF2AB3553100DFF858 /* Coordinators */,
 				C47FB1422AB34AC000D426A8 /* Modules */,
 				C47FB1452AB34B3900D426A8 /* Resources */,
 				C49257EF2AB34E2C00DFF858 /* Services */,
@@ -132,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				C47FB1112AB34A1400D426A8 /* AppDelegate.swift */,
+				C49257FD2AB3545500DFF858 /* AppConfigurator.swift */,
 				C47FB11F2AB34A1500D426A8 /* Info.plist */,
 			);
 			path = App;
@@ -219,6 +229,24 @@
 				C49257F62AB34F3D00DFF858 /* Request.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C49257FF2AB3553100DFF858 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C49258092AB35D1800DFF858 /* Coordinator.swift */,
+				C49258002AB3554300DFF858 /* RootCoordinator */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C49258002AB3554300DFF858 /* RootCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C49258012AB3555000DFF858 /* RootCoordinator.swift */,
+				C49258052AB3562900DFF858 /* RootRouter.swift */,
+			);
+			path = RootCoordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,10 +379,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C49258022AB3555000DFF858 /* RootCoordinator.swift in Sources */,
+				C49257FE2AB3545500DFF858 /* AppConfigurator.swift in Sources */,
+				C492580A2AB35D1800DFF858 /* Coordinator.swift in Sources */,
 				C47FB1162AB34A1400D426A8 /* HomeViewController.swift in Sources */,
 				C47FB1122AB34A1400D426A8 /* AppDelegate.swift in Sources */,
 				C49257F72AB34F3D00DFF858 /* Request.swift in Sources */,
 				C49257F92AB34F5700DFF858 /* LocalStorage.swift in Sources */,
+				C49258062AB3562900DFF858 /* RootRouter.swift in Sources */,
 				C49257EE2AB34E1200DFF858 /* CityViewController.swift in Sources */,
 				C49257F42AB34EC700DFF858 /* RequestManager.swift in Sources */,
 			);
@@ -530,7 +562,6 @@
 				INFOPLIST_FILE = TestWeatherApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -559,7 +590,6 @@
 				INFOPLIST_FILE = TestWeatherApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
