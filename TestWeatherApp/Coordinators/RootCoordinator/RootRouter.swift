@@ -8,7 +8,9 @@
 import UIKit
 
 protocol RootRouter: AnyObject {
-    func showHome(animated: Bool)
+    func showHome(animated: Bool, out: @escaping HomeOut)
+    func openAddLocation(out: @escaping AddLocationOut)
+    func openForecast(location: LocationModel, out: @escaping ForecastOut)
 }
 
 final class RootRouterImpl: RootRouter {
@@ -25,8 +27,16 @@ final class RootRouterImpl: RootRouter {
     
     // MARK: - RootRouter
     
-    func showHome(animated: Bool) {
-        let homeVC = HomewViewController(nibName: nil, bundle: .main)
+    func showHome(animated: Bool, out: @escaping HomeOut) {
+        let homeVC = HomeViewController(out: out)
         nc?.pushViewController(homeVC, animated: animated)
+    }
+    
+    func openAddLocation(out: AddLocationOut) {
+        
+    }
+    
+    func openForecast(location: LocationModel, out: @escaping ForecastOut) {
+        
     }
 }

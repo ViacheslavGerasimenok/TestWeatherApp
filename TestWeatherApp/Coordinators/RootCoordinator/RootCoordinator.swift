@@ -30,6 +30,25 @@ final class RootCoordinatorImpl: RootCoordinator {
     // MARK: - RootCoordinator
     
     func run() {
-        router.showHome(animated: false)
+        router.showHome(animated: false, out: processHome)
+    }
+    
+    // MARK: - ProcessFunctions
+    
+    private func processHome(cmd: HomeOutCmd) {
+        switch cmd {
+        case .openForecast(let location):
+            router.openForecast(location: location, out: processForecast)
+        case .openAddLocation:
+            router.openAddLocation(out: processAddLocation)
+        }
+    }
+    
+    private func processForecast(cmd: ForecastOutCmd) {
+        
+    }
+    
+    private func processAddLocation(cmd: AddLocationOutCmd) {
+        
     }
 }

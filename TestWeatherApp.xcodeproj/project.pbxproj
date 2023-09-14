@@ -14,7 +14,6 @@
 		C47FB1292AB34A1500D426A8 /* TestWeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FB1282AB34A1500D426A8 /* TestWeatherAppTests.swift */; };
 		C47FB1332AB34A1500D426A8 /* TestWeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FB1322AB34A1500D426A8 /* TestWeatherAppUITests.swift */; };
 		C47FB1352AB34A1500D426A8 /* TestWeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FB1342AB34A1500D426A8 /* TestWeatherAppUITestsLaunchTests.swift */; };
-		C49257EE2AB34E1200DFF858 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257ED2AB34E1200DFF858 /* CityViewController.swift */; };
 		C49257F42AB34EC700DFF858 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257F32AB34EC700DFF858 /* RequestManager.swift */; };
 		C49257F72AB34F3D00DFF858 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257F62AB34F3D00DFF858 /* Request.swift */; };
 		C49257F92AB34F5700DFF858 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49257F82AB34F5700DFF858 /* LocalStorage.swift */; };
@@ -22,6 +21,23 @@
 		C49258022AB3555000DFF858 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258012AB3555000DFF858 /* RootCoordinator.swift */; };
 		C49258062AB3562900DFF858 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258052AB3562900DFF858 /* RootRouter.swift */; };
 		C492580A2AB35D1800DFF858 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258092AB35D1800DFF858 /* Coordinator.swift */; };
+		C492580D2AB36AD400DFF858 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492580C2AB36AD400DFF858 /* EmptyView.swift */; };
+		C49258112AB36C0B00DFF858 /* LabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258102AB36C0B00DFF858 /* LabelExtensions.swift */; };
+		C49258152AB3706400DFF858 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258142AB3706400DFF858 /* UIViewExtensions.swift */; };
+		C49258182AB371B400DFF858 /* CommonInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258172AB371B400DFF858 /* CommonInsets.swift */; };
+		C492581A2AB3721000DFF858 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258192AB3721000DFF858 /* UIApplicationExtensions.swift */; };
+		C492581C2AB3727900DFF858 /* CGFloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492581B2AB3727900DFF858 /* CGFloatExtensions.swift */; };
+		C492581E2AB37C4200DFF858 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492581D2AB37C4200DFF858 /* LocationCell.swift */; };
+		C49258212AB37C8300DFF858 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258202AB37C8300DFF858 /* HomePresenter.swift */; };
+		C49258242AB37F5600DFF858 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258232AB37F5600DFF858 /* LocationModel.swift */; };
+		C49258262AB3800500DFF858 /* LocalStorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258252AB3800500DFF858 /* LocalStorageKey.swift */; };
+		C49258282AB3838A00DFF858 /* LocationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258272AB3838A00DFF858 /* LocationCellViewModel.swift */; };
+		C492582A2AB385EB00DFF858 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258292AB385EB00DFF858 /* ArrayExtensions.swift */; };
+		C492582C2AB38BFB00DFF858 /* UIEdgeInsetsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492582B2AB38BFB00DFF858 /* UIEdgeInsetsExtensions.swift */; };
+		C49258322AB3AD4D00DFF858 /* ForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258312AB3AD4D00DFF858 /* ForecastPresenter.swift */; };
+		C49258332AB3AD4D00DFF858 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49258302AB3AD4D00DFF858 /* ForecastViewController.swift */; };
+		C49258342AB3AF7900DFF858 /* AddLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492582E2AB3AC3600DFF858 /* AddLocationPresenter.swift */; };
+		C49258352AB3AF7B00DFF858 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492582F2AB3AC3600DFF858 /* AddLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +69,6 @@
 		C47FB12E2AB34A1500D426A8 /* TestWeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestWeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47FB1322AB34A1500D426A8 /* TestWeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeatherAppUITests.swift; sourceTree = "<group>"; };
 		C47FB1342AB34A1500D426A8 /* TestWeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C49257ED2AB34E1200DFF858 /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		C49257F32AB34EC700DFF858 /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		C49257F62AB34F3D00DFF858 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		C49257F82AB34F5700DFF858 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
@@ -61,6 +76,23 @@
 		C49258012AB3555000DFF858 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		C49258052AB3562900DFF858 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		C49258092AB35D1800DFF858 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C492580C2AB36AD400DFF858 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		C49258102AB36C0B00DFF858 /* LabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtensions.swift; sourceTree = "<group>"; };
+		C49258142AB3706400DFF858 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		C49258172AB371B400DFF858 /* CommonInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonInsets.swift; sourceTree = "<group>"; };
+		C49258192AB3721000DFF858 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
+		C492581B2AB3727900DFF858 /* CGFloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtensions.swift; sourceTree = "<group>"; };
+		C492581D2AB37C4200DFF858 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		C49258202AB37C8300DFF858 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		C49258232AB37F5600DFF858 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		C49258252AB3800500DFF858 /* LocalStorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageKey.swift; sourceTree = "<group>"; };
+		C49258272AB3838A00DFF858 /* LocationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellViewModel.swift; sourceTree = "<group>"; };
+		C49258292AB385EB00DFF858 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		C492582B2AB38BFB00DFF858 /* UIEdgeInsetsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtensions.swift; sourceTree = "<group>"; };
+		C492582E2AB3AC3600DFF858 /* AddLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationPresenter.swift; sourceTree = "<group>"; };
+		C492582F2AB3AC3600DFF858 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		C49258302AB3AD4D00DFF858 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		C49258312AB3AD4D00DFF858 /* ForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,9 +145,12 @@
 			children = (
 				C47FB1412AB34AB700D426A8 /* App */,
 				C49257FF2AB3553100DFF858 /* Coordinators */,
+				C49258222AB37F4600DFF858 /* Models */,
 				C47FB1422AB34AC000D426A8 /* Modules */,
 				C47FB1452AB34B3900D426A8 /* Resources */,
 				C49257EF2AB34E2C00DFF858 /* Services */,
+				C492580E2AB36BF000DFF858 /* Utils */,
+				C492580B2AB36AC500DFF858 /* Views */,
 			);
 			path = TestWeatherApp;
 			sourceTree = "<group>";
@@ -150,7 +185,8 @@
 		C47FB1422AB34AC000D426A8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				C49257EC2AB34DFB00DFF858 /* City */,
+				C492582D2AB3AC2D00DFF858 /* AddLocation */,
+				C49257EC2AB34DFB00DFF858 /* Forecast */,
 				C47FB1442AB34B2800D426A8 /* Home */,
 				C47FB1432AB34B1F00D426A8 /* LaunchScreen */,
 			);
@@ -168,7 +204,9 @@
 		C47FB1442AB34B2800D426A8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C49258202AB37C8300DFF858 /* HomePresenter.swift */,
 				C47FB1152AB34A1400D426A8 /* HomeViewController.swift */,
+				C492581F2AB37C7600DFF858 /* Cells */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -181,12 +219,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		C49257EC2AB34DFB00DFF858 /* City */ = {
+		C49257EC2AB34DFB00DFF858 /* Forecast */ = {
 			isa = PBXGroup;
 			children = (
-				C49257ED2AB34E1200DFF858 /* CityViewController.swift */,
+				C49258312AB3AD4D00DFF858 /* ForecastPresenter.swift */,
+				C49258302AB3AD4D00DFF858 /* ForecastViewController.swift */,
 			);
-			path = City;
+			path = Forecast;
 			sourceTree = "<group>";
 		};
 		C49257EF2AB34E2C00DFF858 /* Services */ = {
@@ -203,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				C49257F82AB34F5700DFF858 /* LocalStorage.swift */,
+				C49258252AB3800500DFF858 /* LocalStorageKey.swift */,
 			);
 			path = LocalStorage;
 			sourceTree = "<group>";
@@ -247,6 +287,70 @@
 				C49258052AB3562900DFF858 /* RootRouter.swift */,
 			);
 			path = RootCoordinator;
+			sourceTree = "<group>";
+		};
+		C492580B2AB36AC500DFF858 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C492580C2AB36AD400DFF858 /* EmptyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C492580E2AB36BF000DFF858 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C49258162AB3719800DFF858 /* CommonInsets */,
+				C492580F2AB36BFE00DFF858 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C492580F2AB36BFE00DFF858 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C49258292AB385EB00DFF858 /* ArrayExtensions.swift */,
+				C492581B2AB3727900DFF858 /* CGFloatExtensions.swift */,
+				C49258102AB36C0B00DFF858 /* LabelExtensions.swift */,
+				C49258192AB3721000DFF858 /* UIApplicationExtensions.swift */,
+				C492582B2AB38BFB00DFF858 /* UIEdgeInsetsExtensions.swift */,
+				C49258142AB3706400DFF858 /* UIViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C49258162AB3719800DFF858 /* CommonInsets */ = {
+			isa = PBXGroup;
+			children = (
+				C49258172AB371B400DFF858 /* CommonInsets.swift */,
+			);
+			path = CommonInsets;
+			sourceTree = "<group>";
+		};
+		C492581F2AB37C7600DFF858 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C492581D2AB37C4200DFF858 /* LocationCell.swift */,
+				C49258272AB3838A00DFF858 /* LocationCellViewModel.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C49258222AB37F4600DFF858 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C49258232AB37F5600DFF858 /* LocationModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C492582D2AB3AC2D00DFF858 /* AddLocation */ = {
+			isa = PBXGroup;
+			children = (
+				C492582E2AB3AC3600DFF858 /* AddLocationPresenter.swift */,
+				C492582F2AB3AC3600DFF858 /* AddLocationViewController.swift */,
+			);
+			path = AddLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,16 +483,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C492582C2AB38BFB00DFF858 /* UIEdgeInsetsExtensions.swift in Sources */,
 				C49258022AB3555000DFF858 /* RootCoordinator.swift in Sources */,
+				C49258332AB3AD4D00DFF858 /* ForecastViewController.swift in Sources */,
 				C49257FE2AB3545500DFF858 /* AppConfigurator.swift in Sources */,
+				C492580D2AB36AD400DFF858 /* EmptyView.swift in Sources */,
+				C49258352AB3AF7B00DFF858 /* AddLocationViewController.swift in Sources */,
 				C492580A2AB35D1800DFF858 /* Coordinator.swift in Sources */,
+				C492581E2AB37C4200DFF858 /* LocationCell.swift in Sources */,
+				C492582A2AB385EB00DFF858 /* ArrayExtensions.swift in Sources */,
 				C47FB1162AB34A1400D426A8 /* HomeViewController.swift in Sources */,
 				C47FB1122AB34A1400D426A8 /* AppDelegate.swift in Sources */,
 				C49257F72AB34F3D00DFF858 /* Request.swift in Sources */,
+				C49258152AB3706400DFF858 /* UIViewExtensions.swift in Sources */,
 				C49257F92AB34F5700DFF858 /* LocalStorage.swift in Sources */,
+				C49258242AB37F5600DFF858 /* LocationModel.swift in Sources */,
+				C492581A2AB3721000DFF858 /* UIApplicationExtensions.swift in Sources */,
+				C492581C2AB3727900DFF858 /* CGFloatExtensions.swift in Sources */,
+				C49258262AB3800500DFF858 /* LocalStorageKey.swift in Sources */,
+				C49258112AB36C0B00DFF858 /* LabelExtensions.swift in Sources */,
+				C49258182AB371B400DFF858 /* CommonInsets.swift in Sources */,
 				C49258062AB3562900DFF858 /* RootRouter.swift in Sources */,
-				C49257EE2AB34E1200DFF858 /* CityViewController.swift in Sources */,
+				C49258212AB37C8300DFF858 /* HomePresenter.swift in Sources */,
 				C49257F42AB34EC700DFF858 /* RequestManager.swift in Sources */,
+				C49258342AB3AF7900DFF858 /* AddLocationPresenter.swift in Sources */,
+				C49258282AB3838A00DFF858 /* LocationCellViewModel.swift in Sources */,
+				C49258322AB3AD4D00DFF858 /* ForecastPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
