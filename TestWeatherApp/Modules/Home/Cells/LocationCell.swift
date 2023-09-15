@@ -19,9 +19,15 @@ final class LocationCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel(numberOfLines: 2)
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var subtitleLabel: UILabel = {
+        let label = UILabel(numberOfLines: 2)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .black
         return label
     }()
     
@@ -43,12 +49,13 @@ final class LocationCell: UICollectionViewCell {
     func configure(viewModel: LocationCellViewModel) {
         self.viewModel = viewModel
         titleLabel.text = viewModel.title
+        subtitleLabel.text = viewModel.subtitle
     }
     
     // MARK: - Setup
     
     private func setupViews() {
-        contentView.addSubview(titleLabel)
+        contentView.addSubviews(titleLabel, subtitleLabel)
         
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 16
@@ -58,11 +65,19 @@ final class LocationCell: UICollectionViewCell {
     }
     
     private func setupLayout() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: sideInset),
-            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -sideInset),
+            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: subtitleLabel.topAnchor, constant: -sideInset),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideInset),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideInset)
+        ])
+        
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            subtitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -sideInset),
+            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideInset),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideInset)
         ])
     }
 }

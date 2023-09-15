@@ -13,6 +13,10 @@ enum HomeOutCmd {
     case openAddLocation
 }
 
+protocol HomeIn: AnyObject {
+    func addLocation(_ location: LocationModel)
+}
+
 protocol HomePresenter: AnyObject {
     var locationsCount: Int { get }
     
@@ -28,6 +32,7 @@ final class HomePresenterImpl {
     
     private let out: HomeOut
     private weak var view: HomeView?
+    private static let localStorage: LocalStorage = LocalStorageImpl.shared
     
     private var locations: [LocationModel]
     
@@ -39,7 +44,14 @@ final class HomePresenterImpl {
     ) {
         self.out = out
         self.view = view
-        self.locations = LocalStorageImpl.shared.getValue(forKey: .locations) ?? []
+        self.locations = Self.localStorage.getValue(forKey: .locations) ?? []
+    }
+    
+    // MARK: - Helpers
+    
+    private func updateView() {
+        view?.reloadData()
+        view?.setEmptyView(isHidden: !locations.isEmpty)
     }
 }
 
@@ -51,7 +63,7 @@ extension HomePresenterImpl: HomePresenter {
     }
     
     func viewDidLoad() {
-        view?.setEmptyView(isHidden: !locations.isEmpty)
+        updateView()
     }
     
     func addLocationTapped() {
@@ -65,5 +77,15 @@ extension HomePresenterImpl: HomePresenter {
     
     func locationModelAt(indexPath: IndexPath) -> LocationModel? {
         locations[safe: indexPath.row]
+    }
+}
+
+// MARK: - HomeIn
+
+extension HomePresenterImpl: HomeIn {
+    func addLocation(_ location: LocationModel) {
+        locations.append(location)
+        Self.localStorage.setValue(locations, forKey: .locations)
+        updateView()
     }
 }

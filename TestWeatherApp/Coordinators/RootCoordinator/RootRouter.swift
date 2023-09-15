@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol RootRouter: AnyObject {
-    func showHome(animated: Bool, out: @escaping HomeOut)
-    func openAddLocation(out: @escaping AddLocationOut)
-    func openForecast(location: LocationModel, out: @escaping ForecastOut)
+protocol RootRouter: AnyObject, Router {
+    func showHome(animated: Bool, out: @escaping HomeOut) -> HomeIn?
+    func openAddLocation(animated: Bool, out: @escaping AddLocationOut)
+    func openForecast(location: LocationModel, animated: Bool, out: @escaping ForecastOut)
 }
 
 final class RootRouterImpl: RootRouter {
     
     // MARK: - Properties
     
-    private weak var nc: UINavigationController?
+    private(set) weak var nc: UINavigationController?
     
     // MARK: - Init
     
@@ -27,16 +27,19 @@ final class RootRouterImpl: RootRouter {
     
     // MARK: - RootRouter
     
-    func showHome(animated: Bool, out: @escaping HomeOut) {
+    func showHome(animated: Bool, out: @escaping HomeOut) -> HomeIn? {
         let homeVC = HomeViewController(out: out)
         nc?.pushViewController(homeVC, animated: animated)
+        return homeVC.presenter
     }
     
-    func openAddLocation(out: AddLocationOut) {
-        
+    func openAddLocation(animated: Bool, out: @escaping AddLocationOut) {
+        let addLocationVC = AddLocationViewController(out: out)
+        nc?.pushViewController(addLocationVC, animated: animated)
     }
     
-    func openForecast(location: LocationModel, out: @escaping ForecastOut) {
-        
+    func openForecast(location: LocationModel, animated: Bool, out: @escaping ForecastOut) {
+        let forecastVC = ForecastViewController(location: location, out: out)
+        nc?.pushViewController(forecastVC, animated: animated)
     }
 }

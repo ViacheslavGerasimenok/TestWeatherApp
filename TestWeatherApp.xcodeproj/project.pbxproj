@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4538B2D2AB45B9F009E6A86 /* SelectedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4538B2C2AB45B9F009E6A86 /* SelectedLocationView.swift */; };
+		C4538B2F2AB462B2009E6A86 /* SelectedLocationArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4538B2E2AB462B2009E6A86 /* SelectedLocationArrowView.swift */; };
+		C4538B312AB46EA1009E6A86 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4538B302AB46EA1009E6A86 /* Router.swift */; };
 		C47FB1122AB34A1400D426A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FB1112AB34A1400D426A8 /* AppDelegate.swift */; };
 		C47FB1162AB34A1400D426A8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47FB1152AB34A1400D426A8 /* HomeViewController.swift */; };
 		C47FB11B2AB34A1500D426A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47FB11A2AB34A1500D426A8 /* Assets.xcassets */; };
@@ -58,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4538B2C2AB45B9F009E6A86 /* SelectedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationView.swift; sourceTree = "<group>"; };
+		C4538B2E2AB462B2009E6A86 /* SelectedLocationArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationArrowView.swift; sourceTree = "<group>"; };
+		C4538B302AB46EA1009E6A86 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C47FB10E2AB34A1400D426A8 /* TestWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47FB1112AB34A1400D426A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C47FB1152AB34A1400D426A8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C4538B2B2AB45B93009E6A86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4538B2C2AB45B9F009E6A86 /* SelectedLocationView.swift */,
+				C4538B2E2AB462B2009E6A86 /* SelectedLocationArrowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C47FB1052AB34A1400D426A8 = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				C49258092AB35D1800DFF858 /* Coordinator.swift */,
+				C4538B302AB46EA1009E6A86 /* Router.swift */,
 				C49258002AB3554300DFF858 /* RootCoordinator */,
 			);
 			path = Coordinators;
@@ -349,6 +365,7 @@
 			children = (
 				C492582E2AB3AC3600DFF858 /* AddLocationPresenter.swift */,
 				C492582F2AB3AC3600DFF858 /* AddLocationViewController.swift */,
+				C4538B2B2AB45B93009E6A86 /* Views */,
 			);
 			path = AddLocation;
 			sourceTree = "<group>";
@@ -489,6 +506,7 @@
 				C49257FE2AB3545500DFF858 /* AppConfigurator.swift in Sources */,
 				C492580D2AB36AD400DFF858 /* EmptyView.swift in Sources */,
 				C49258352AB3AF7B00DFF858 /* AddLocationViewController.swift in Sources */,
+				C4538B2F2AB462B2009E6A86 /* SelectedLocationArrowView.swift in Sources */,
 				C492580A2AB35D1800DFF858 /* Coordinator.swift in Sources */,
 				C492581E2AB37C4200DFF858 /* LocationCell.swift in Sources */,
 				C492582A2AB385EB00DFF858 /* ArrayExtensions.swift in Sources */,
@@ -503,8 +521,10 @@
 				C49258262AB3800500DFF858 /* LocalStorageKey.swift in Sources */,
 				C49258112AB36C0B00DFF858 /* LabelExtensions.swift in Sources */,
 				C49258182AB371B400DFF858 /* CommonInsets.swift in Sources */,
+				C4538B312AB46EA1009E6A86 /* Router.swift in Sources */,
 				C49258062AB3562900DFF858 /* RootRouter.swift in Sources */,
 				C49258212AB37C8300DFF858 /* HomePresenter.swift in Sources */,
+				C4538B2D2AB45B9F009E6A86 /* SelectedLocationView.swift in Sources */,
 				C49257F42AB34EC700DFF858 /* RequestManager.swift in Sources */,
 				C49258342AB3AF7900DFF858 /* AddLocationPresenter.swift in Sources */,
 				C49258282AB3838A00DFF858 /* LocationCellViewModel.swift in Sources */,

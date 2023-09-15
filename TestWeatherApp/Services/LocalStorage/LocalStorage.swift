@@ -16,7 +16,7 @@ final class LocalStorageImpl: LocalStorage {
     
     // MARK: - Singleton
     
-    static let shared = LocalStorageImpl()
+    static let shared: LocalStorage = LocalStorageImpl()
     
     // MARK: - Properties
     

@@ -5,15 +5,17 @@
 //  Created by Bleiki on 14/09/2023.
 //
 
-import Foundation
+import CoreLocation
 
 typealias AddLocationOut = (AddLocationOutCmd) -> Void
 enum AddLocationOutCmd {
-
+    case addLocation(LocationModel)
 }
 
 protocol AddLocationPresenter: AnyObject {
     func viewDidLoad()
+    func addButtonTapped(coordinates: CLLocationCoordinate2D)
+    func didEnterLocation(name: String)
 }
 
 final class AddLocationPresenterImpl {
@@ -22,6 +24,15 @@ final class AddLocationPresenterImpl {
     
     private let out: AddLocationOut
     private weak var view: AddLocationView?
+    
+    private var selectedCoordinates: CLLocationCoordinate2D?
+    
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.distanceFilter = kCLDistanceFilterNone
+        manager.desiredAccuracy = kCLLocationAccuracyKilometer
+        return manager
+    }()
     
     // MARK: - Init
     
@@ -38,6 +49,29 @@ final class AddLocationPresenterImpl {
 
 extension AddLocationPresenterImpl: AddLocationPresenter {
     func viewDidLoad() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        view?.showSelectedLocationView()
+    }
+    
+    func addButtonTapped(coordinates: CLLocationCoordinate2D) {
+        selectedCoordinates = coordinates
+        view?.showEnterLocationNameAlert()
+    }
+    
+    func didEnterLocation(name: String) {
+        guard !name.isEmpty else {
+            view?.showErrorAlert(title: "Failure", subtitle: "Name shouldn't be empty")
+            return
+        }
         
+        guard let selectedCoordinates else { return }
+        
+        let locationModel = LocationModel(
+            name: name,
+            latitude: selectedCoordinates.latitude,
+            longitude: selectedCoordinates.longitude
+        )
+        out(.addLocation(locationModel))
     }
 }

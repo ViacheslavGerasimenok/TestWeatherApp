@@ -21,7 +21,6 @@ final class EmptyView: UIView {
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         label.textColor = .gray
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -55,6 +54,7 @@ final class EmptyView: UIView {
     }
     
     private func setupLayout() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),

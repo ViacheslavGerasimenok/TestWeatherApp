@@ -17,6 +17,8 @@ final class RootCoordinatorImpl: RootCoordinator {
     
     private let router: RootRouter
     
+    private weak var homeIn: HomeIn?
+    
     // MARK: - Init
     
     init(router: RootRouter) {
@@ -30,7 +32,7 @@ final class RootCoordinatorImpl: RootCoordinator {
     // MARK: - RootCoordinator
     
     func run() {
-        router.showHome(animated: false, out: processHome)
+        homeIn = router.showHome(animated: false, out: processHome)
     }
     
     // MARK: - ProcessFunctions
@@ -38,9 +40,9 @@ final class RootCoordinatorImpl: RootCoordinator {
     private func processHome(cmd: HomeOutCmd) {
         switch cmd {
         case .openForecast(let location):
-            router.openForecast(location: location, out: processForecast)
+            router.openForecast(location: location, animated: true, out: processForecast)
         case .openAddLocation:
-            router.openAddLocation(out: processAddLocation)
+            router.openAddLocation(animated: true, out: processAddLocation)
         }
     }
     
@@ -49,6 +51,10 @@ final class RootCoordinatorImpl: RootCoordinator {
     }
     
     private func processAddLocation(cmd: AddLocationOutCmd) {
-        
+        switch cmd {
+        case .addLocation(let location):
+            homeIn?.addLocation(location)
+            router.pop(animated: true)
+        }
     }
 }

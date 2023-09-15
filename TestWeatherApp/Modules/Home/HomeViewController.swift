@@ -8,6 +8,7 @@
 import UIKit
 
 protocol HomeView: AnyObject {
+    func reloadData()
     func setEmptyView(isHidden: Bool)
 }
 
@@ -15,11 +16,11 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var presenter: HomePresenter?
+    private(set) var presenter: (HomePresenter & HomeIn)?
     
     private let locationCellId = String(describing: LocationCell.self)
     private var locationCellHeight: CGFloat {
-        view.isRegular ? 96 : 80
+        view.isRegular ? 120 : 112
     }
     
     private var collectionViewContentInset: UIEdgeInsets {
@@ -39,11 +40,7 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Subviews
     
-    private lazy var emptyView: EmptyView = {
-        let view = EmptyView(title: "Add a locations to view the weather forecast")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var emptyView = EmptyView(title: "Add a locations to view the weather forecast")
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -51,7 +48,6 @@ final class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInset = collectionViewContentInset
         collectionView.backgroundColor = .white
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(LocationCell.self, forCellWithReuseIdentifier: locationCellId)
         return collectionView
     }()
@@ -99,18 +95,20 @@ final class HomeViewController: UIViewController {
     }
     
     private func setupLayout() {
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
-            emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            emptyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
         
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
     
@@ -129,6 +127,10 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeView
 
 extension HomeViewController: HomeView {
+    func reloadData() {
+        collectionView.reloadData()
+    }
+    
     func setEmptyView(isHidden: Bool) {
         emptyView.isHidden = isHidden
     }
