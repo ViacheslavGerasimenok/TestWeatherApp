@@ -6,9 +6,9 @@
 //
 
 struct LocationModel: Codable {
-    let name: String
-    let latitude: Double
-    let longitude: Double
+    var name: String
+    var latitude: Double
+    var longitude: Double
     
     var coordinatesString: String {
         let latitudeString = "Latitude: \(String(format: "%.2f", latitude))"

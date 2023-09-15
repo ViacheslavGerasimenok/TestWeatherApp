@@ -22,8 +22,13 @@ protocol HomePresenter: AnyObject {
     
     func viewDidLoad()
     func addLocationTapped()
+    func editLocationsTapped()
     func didSelectItemAt(indexPath: IndexPath)
     func locationModelAt(indexPath: IndexPath) -> LocationModel?
+    func deleteLocationTapped(indexPath: IndexPath)
+    func renameLocationTapped(indexPath: IndexPath, newName: String)
+    func startLocationRenamingProcess(indexPath: IndexPath)
+    func startLocationDeletingProcess(indexPath: IndexPath)
 }
 
 final class HomePresenterImpl {
@@ -34,6 +39,7 @@ final class HomePresenterImpl {
     private weak var view: HomeView?
     private static let localStorage: LocalStorage = LocalStorageImpl.shared
     
+    private var isEditing = false
     private var locations: [LocationModel]
     
     // MARK: - Init
@@ -52,6 +58,19 @@ final class HomePresenterImpl {
     private func updateView() {
         view?.reloadData()
         view?.setEmptyView(isHidden: !locations.isEmpty)
+        updateEditButton()
+    }
+    
+    private func updateEditButton() {
+        guard !locations.isEmpty else {
+            view?.setEditingButton(title: "")
+            return
+        }
+        view?.setEditingButton(title: isEditing ? "End Editing" : "Edit")
+    }
+    
+    private func saveLocations() {
+        Self.localStorage.setValue(locations, forKey: .locations)
     }
 }
 
@@ -70,13 +89,67 @@ extension HomePresenterImpl: HomePresenter {
         out(.openAddLocation)
     }
     
+    func editLocationsTapped() {
+        if isEditing {
+            view?.endShakeLocationCells()
+        } else {
+            view?.startShakeLocationCells()
+        }
+        isEditing.toggle()
+        updateEditButton()
+    }
+    
     func didSelectItemAt(indexPath: IndexPath) {
-        guard let location = locations[safe: indexPath.row] else { return }
-        out(.openForecast(location))
+        if isEditing {
+            view?.showLocationActionsAlert(indexPath: indexPath)
+        } else {
+            guard let location = locations[safe: indexPath.row] else { return }
+            out(.openForecast(location))
+        }
     }
     
     func locationModelAt(indexPath: IndexPath) -> LocationModel? {
         locations[safe: indexPath.row]
+    }
+    
+    func renameLocationTapped(indexPath: IndexPath, newName: String) {
+        guard !newName.isEmpty else {
+            view?.showAlert(title: "Failure", subtitle: "Name shouldn't be empty")
+            return
+        }
+        guard var locationModel = locationModelAt(indexPath: indexPath) else {
+            view?.showAlert(title: "Failure", subtitle: "Location not found")
+            return
+        }
+     
+        locationModel.name = newName
+        locations[indexPath.row] = locationModel
+        saveLocations()
+        updateView()
+        
+        view?.showAlert(title: "Success", subtitle: "Location renamed to \(newName)")
+    }
+    
+    func deleteLocationTapped(indexPath: IndexPath) {
+        guard let location = locationModelAt(indexPath: indexPath) else {
+            view?.showAlert(title: "Failure", subtitle: "Location not found")
+            return
+        }
+        locations.remove(at: indexPath.row)
+        saveLocations()
+        updateView()
+        
+        view?.showAlert(title: "Success", subtitle: "Location \(location.name) deleted")
+    }
+    
+    func startLocationRenamingProcess(indexPath: IndexPath) {
+        guard let location = locationModelAt(indexPath: indexPath) else { return }
+        view?.showRenameAlert(indexPath: indexPath, currentLocationName: location.name)
+    }
+    
+    func startLocationDeletingProcess(indexPath: IndexPath) {
+        guard let location = locationModelAt(indexPath: indexPath) else { return }
+        view?.showDeleteAlert(indexPath: indexPath, locationName: location.name)
     }
 }
 
@@ -85,7 +158,7 @@ extension HomePresenterImpl: HomePresenter {
 extension HomePresenterImpl: HomeIn {
     func addLocation(_ location: LocationModel) {
         locations.append(location)
-        Self.localStorage.setValue(locations, forKey: .locations)
+        saveLocations()
         updateView()
     }
 }

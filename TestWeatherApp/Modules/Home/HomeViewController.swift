@@ -10,6 +10,13 @@ import UIKit
 protocol HomeView: AnyObject {
     func reloadData()
     func setEmptyView(isHidden: Bool)
+    func setEditingButton(title: String)
+    func endShakeLocationCells()
+    func startShakeLocationCells()
+    func showAlert(title: String, subtitle: String)
+    func showLocationActionsAlert(indexPath: IndexPath)
+    func showRenameAlert(indexPath: IndexPath, currentLocationName: String)
+    func showDeleteAlert(indexPath: IndexPath, locationName: String)
 }
 
 final class HomeViewController: UIViewController {
@@ -17,6 +24,8 @@ final class HomeViewController: UIViewController {
     // MARK: - Properties
     
     private(set) var presenter: (HomePresenter & HomeIn)?
+    
+    private var shakeTimer: Timer?
     
     private let locationCellId = String(describing: LocationCell.self)
     private var locationCellHeight: CGFloat {
@@ -83,6 +92,12 @@ final class HomeViewController: UIViewController {
     
     private func setupViews() {
         navigationItem.title = "Locations"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "",
+            style: .done,
+            target: self,
+            action: #selector(editLocationsTapped)
+        )
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Add location",
             style: .done,
@@ -122,6 +137,10 @@ final class HomeViewController: UIViewController {
     @objc private func addLocationTapped() {
         presenter?.addLocationTapped()
     }
+    
+    @objc private func editLocationsTapped() {
+        presenter?.editLocationsTapped()
+    }
 }
 
 // MARK: - HomeView
@@ -133,6 +152,95 @@ extension HomeViewController: HomeView {
     
     func setEmptyView(isHidden: Bool) {
         emptyView.isHidden = isHidden
+    }
+    
+    func setEditingButton(title: String) {
+        navigationItem.leftBarButtonItem?.title = title
+    }
+    
+    func endShakeLocationCells() {
+        shakeTimer?.invalidate()
+        shakeTimer = nil
+    }
+    
+    func startShakeLocationCells() {
+        shakeTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
+            guard let locationsCount = self?.presenter?.locationsCount else { return }
+            for i in 0...locationsCount {
+                let indexPath = IndexPath(row: i, section: 0)
+                self?.collectionView.cellForItem(at: indexPath)?.shake()
+            }
+        }
+    }
+    
+    func showAlert(title: String, subtitle: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: subtitle,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    func showLocationActionsAlert(indexPath: IndexPath) {
+        guard let sourceCell = collectionView.cellForItem(at: indexPath) else { return }
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.popoverPresentationController?.sourceView = sourceCell
+
+        let renameAction = UIAlertAction(title: "Rename", style: .default) { [weak self] _ in
+            self?.presenter?.startLocationRenamingProcess(indexPath: indexPath)
+        }
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.presenter?.startLocationDeletingProcess(indexPath: indexPath)
+        }
+        
+        alert.addAction(renameAction)
+        alert.addAction(deleteAction)
+        
+        present(alert, animated: true)
+    }
+    
+    func showRenameAlert(indexPath: IndexPath, currentLocationName: String) {
+        let alert = UIAlertController(
+            title: "Renaming",
+            message: "Enter New Name",
+            preferredStyle: .alert
+        )
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let renameAction = UIAlertAction(title: "Rename", style: .default) { [weak alert, weak self] action in
+            guard let newName = alert?.textFields?.first?.text else { return }
+            self?.presenter?.renameLocationTapped(indexPath: indexPath, newName: newName)
+        }
+        
+        alert.addAction(renameAction)
+        alert.addAction(cancelAction)
+        alert.addTextField { textField in
+            textField.text = currentLocationName
+        }
+        
+        present(alert, animated: true)
+    }
+    
+    func showDeleteAlert(indexPath: IndexPath, locationName: String) {
+        let alert = UIAlertController(
+            title: "Delete?",
+            message: "Are you shure that you want delete \(locationName) location?",
+            preferredStyle: .alert
+        )
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+            self?.presenter?.deleteLocationTapped(indexPath: indexPath)
+        }
+        
+        alert.addAction(noAction)
+        alert.addAction(yesAction)
+        
+        present(alert, animated: true)
     }
 }
 
