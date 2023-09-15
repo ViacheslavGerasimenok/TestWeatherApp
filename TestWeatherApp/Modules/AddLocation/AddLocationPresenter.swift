@@ -24,6 +24,7 @@ final class AddLocationPresenterImpl {
     
     private let out: AddLocationOut
     private weak var view: AddLocationView?
+    private let localStorage = LocalStorageImpl.shared
     
     private var selectedCoordinates: CLLocationCoordinate2D?
     
@@ -33,6 +34,10 @@ final class AddLocationPresenterImpl {
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
         return manager
     }()
+    
+    private var storedLocations: [LocationModel] {
+        localStorage.getValue(forKey: .locations) ?? []
+    }
     
     // MARK: - Init
     
@@ -62,6 +67,11 @@ extension AddLocationPresenterImpl: AddLocationPresenter {
     func didEnterLocation(name: String) {
         guard !name.isEmpty else {
             view?.showErrorAlert(title: "Failure", subtitle: "Name shouldn't be empty")
+            return
+        }
+        
+        guard !storedLocations.contains(where: { $0.name == name }) else {
+            view?.showErrorAlert(title: "Failure", subtitle: "'\(name)' name already in used")
             return
         }
         

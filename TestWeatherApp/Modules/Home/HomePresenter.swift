@@ -127,7 +127,7 @@ extension HomePresenterImpl: HomePresenter {
         saveLocations()
         updateView()
         
-        view?.showAlert(title: "Success", subtitle: "Location renamed to \(newName)")
+        view?.showAlert(title: "Success", subtitle: "Location renamed to '\(newName)'")
     }
     
     func deleteLocationTapped(indexPath: IndexPath) {

@@ -47,7 +47,10 @@ final class RootCoordinatorImpl: RootCoordinator {
     }
     
     private func processForecast(cmd: ForecastOutCmd) {
-        
+        switch cmd {
+        case .goBack:
+            router.pop(animated: true)
+        }
     }
     
     private func processAddLocation(cmd: AddLocationOutCmd) {
